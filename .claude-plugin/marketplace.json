@@ -1,0 +1,17 @@
+{
+  "name": "pandect",
+  "description": "Инструментите на Pandect за българското право.",
+  "owner": {
+    "name": "Николай Ляков",
+    "url": "https://law.lyakov.bg"
+  },
+  "plugins": [
+    {
+      "name": "pandect",
+      "displayName": "Pandect",
+      "description": "Инструментите на Pandect за българското право: превръщане в markdown, молби и жалби с проверени норми и практика, правила за естествен български език. Носи и конектора към Pandect (вход с OAuth).",
+      "version": "3.0.0",
+      "source": "./plugins/pandect"
+    }
+  ]
+}
