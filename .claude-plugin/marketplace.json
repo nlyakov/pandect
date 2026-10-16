@@ -10,7 +10,7 @@
       "name": "pandect",
       "displayName": "Pandect",
       "description": "Инструментите на Pandect за българското право: превръщане в markdown, молби и жалби с проверени норми и практика, правила за естествен български език. Носи и конектора Pandect MCP (вход с профила).",
-      "version": "3.0.3",
+      "version": "3.1.0",
       "source": "./plugins/pandect"
     }
   ]
