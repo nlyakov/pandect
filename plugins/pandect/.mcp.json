@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "pandect": {
+    "Pandect MCP": {
       "type": "http",
       "url": "https://api.lyakov.bg/mcp"
     }
