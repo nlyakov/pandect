@@ -21,7 +21,7 @@ description: Кеш слой за PDF и Word документи в свърза
 
 ## Процедура за един файл
 
-1. `python3 ~/.lyakov-markitdown.py "<път>"` в `device_bash`.
+1. `python3 ~/.pandect-markitdown.py "<път>"` в `device_bash`.
 2. Според `status`:
    - `fresh` → `.md`-то е актуално; `cat` го. Край.
    - `written` → направен локално, без токени. Чети го.
@@ -54,13 +54,13 @@ description: Кеш слой за PDF и Word документи в свърза
 Копирай скрипта на машината на потребителя:
 
 ```bash
-cp "${CLAUDE_PLUGIN_ROOT}/skills/pandect-markitdown/scripts/markitdown.py" "$HOME/.lyakov-markitdown.py"
+cp "${CLAUDE_PLUGIN_ROOT}/skills/pandect-markitdown/scripts/markitdown.py" "$HOME/.pandect-markitdown.py"
 ```
 
 Не вижда ли `device_bash` плъгина — прочети `scripts/markitdown.py` и го запиши с heredoc. После провери синтаксиса:
 
 ```bash
-python3 -c "import ast;ast.parse(open('$HOME/.lyakov-markitdown.py',encoding='utf-8').read())"
+python3 -c "import ast;ast.parse(open('$HOME/.pandect-markitdown.py',encoding='utf-8').read())"
 ```
 
 
@@ -97,7 +97,7 @@ python3 -c "import ast;ast.parse(open('$HOME/.lyakov-markitdown.py',encoding='ut
 `~/.markitdown-log.jsonl` (дневник), `~/.markitdown-parts/<sha>_<стр>.md` (готови страници), `~/.markitdown-batches/NNN.jsonl` (партиди).
 
 1. **Определи обхвата, преди да тръгнеш.** Провери какво има в свързаните папки и колко е. Ако част от тях е готова база от друг процес (напр. вече поддържан markdown архив), не я пипай — питай кои папки влизат.
-2. **Сухо минаване** — `find <папка> -type f \( -iname '*.pdf' -o -iname '*.docx' \) -print0 | xargs -0 python3 ~/.lyakov-markitdown.py`, на партиди по ~12 файла с бюджет от време (`device_bash` има ~45 s лимит). Резултатите се дописват в дневника. След това всички текстови PDF и Word са готови — остават само `needs-vision`.
+2. **Сухо минаване** — `find <папка> -type f \( -iname '*.pdf' -o -iname '*.docx' \) -print0 | xargs -0 python3 ~/.pandect-markitdown.py`, на партиди по ~12 файла с бюджет от време (`device_bash` има ~45 s лимит). Резултатите се дописват в дневника. След това всички текстови PDF и Word са готови — остават само `needs-vision`.
 3. **Кажи обема и изчакай отговор** — брой документи, брой страници и сметката по 4000/стр. Това е единственото място, където се пита.
 4. **Партиди — ПО ПЪТ НА ФАЙЛА, НЕ ПО ГОЛЕМИНА.** Подреди документите по път, разбий страниците на парчета по ≤20 и пакетирай без пренареждане до ≤60 страници на партида. Пропускай страници, за които вече има part файл, и дублирани sha (един и същ документ в две папки).
    Защо: при сортиране по големина прекъсването оставя много документи наполовина и нито един готов. Измерено: 1280 разчетени страници → 9 завършени файла; същият обем подреден по път → 317.

@@ -2,7 +2,7 @@ import datetime, hashlib, json, os, re, shutil, subprocess, sys, time, zipfile
 import xml.etree.ElementTree as ET
 
 MIN_CHARS = 80
-DRAFT = os.path.expanduser("~/.lyakov-markitdown-drafts")
+DRAFT = os.path.expanduser("~/.pandect-markitdown-drafts")
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 CYR = re.compile(r"[Ѐ-ӿ]")
 LAT = re.compile(r"[A-Za-z]")
